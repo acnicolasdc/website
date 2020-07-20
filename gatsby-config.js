@@ -5,6 +5,12 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        displayName: false
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -25,6 +31,25 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-redux`,
+      options: {
+        // [required] - path to your createStore module
+        pathToCreateStoreModule: './src/state/createStore',
+        // [optional] - options passed to `serialize-javascript`
+        // info: https://github.com/yahoo/serialize-javascript#options
+        // will be merged with these defaults:
+        serialize: {
+          space: 0,
+          isJSON: true,
+          unsafe: false,
+        },
+        // [optional] - if true will clean up after itself on the client, default:
+        cleanupOnClient: true,
+        // [optional] - name of key on `window` where serialized state will be stored, default:
+        windowKey: '__PRELOADED_STATE__',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
